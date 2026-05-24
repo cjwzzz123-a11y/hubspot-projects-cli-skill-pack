@@ -28,6 +28,7 @@ const copy = {
 export function ProductCTA({ variant = "bundle", placement }: Props) {
   const item = copy[variant];
   const Icon = item.icon;
+  void placement;
   const href = variant === "checklist" ? siteConfig.gumroad.pdf : siteConfig.gumroad.bundle;
   const target = href || "/gumroad";
 
@@ -41,7 +42,7 @@ export function ProductCTA({ variant = "bundle", placement }: Props) {
           <div>
             <h2 className="text-lg font-semibold">{item.title}</h2>
             <p className="mt-1 text-sm text-white/76">{item.body}</p>
-            <p className="mt-2 text-xs text-white/55">Placement: {placement}. Gumroad URLs can be swapped in after publishing.</p>
+            <p className="mt-2 text-xs text-white/55">Independent educational product. Gumroad checkout opens here after real product URLs are configured.</p>
           </div>
         </div>
         <Link href={target} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-[#eaf6f1]">
@@ -52,4 +53,3 @@ export function ProductCTA({ variant = "bundle", placement }: Props) {
     </section>
   );
 }
-

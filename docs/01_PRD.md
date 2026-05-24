@@ -101,7 +101,7 @@ The product does not automate a HubSpot migration, does not certify compliance, 
 - `/hubspot-private-app-projects-migration`
 - `/hubspot-developer-platform-2026-03-upgrade`
 - `/hubspot-app-hsmeta-json-structure`
-- `/hubspot-cli-v8-node-20-ci-checklist`
+- `/hubspot-cli-node-ci-preflight`
 - `/hubspot-legacy-crm-cards-to-app-cards`
 - `/hubspot-marketplace-listing-checklist-2026`
 - `/hubspot-projects-cli-faq`
@@ -170,4 +170,3 @@ The product does not automate a HubSpot migration, does not certify compliance, 
 - Final domain.
 - Final Gumroad product URLs.
 - Whether to keep `HubSpot` in repository/product SEO titles while using a neutral brand name on the domain.
-

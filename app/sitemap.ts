@@ -4,7 +4,7 @@ import { siteConfig } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
-  const staticRoutes = ["", "skill-pack", "gumroad"];
+  const staticRoutes = ["", "skill-pack", "gumroad", "download-kit"];
   return [
     ...staticRoutes.map((route) => ({
       url: `${siteConfig.url}/${route}`.replace(/\/$/, ""),
@@ -20,4 +20,3 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })),
   ];
 }
-

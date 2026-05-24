@@ -18,7 +18,7 @@ Win on long-tail task completion and deadline clarity. Official HubSpot docs sho
 | `/hubspot-private-app-projects-migration` | hubspot private app projects migration | Avoid wrong path |
 | `/hubspot-developer-platform-2026-03-upgrade` | hubspot developer platform 2026.03 upgrade | Plan version upgrade |
 | `/hubspot-app-hsmeta-json-structure` | hubspot app-hsmeta.json structure | Troubleshoot structure |
-| `/hubspot-cli-v8-node-20-ci-checklist` | hubspot cli v8 node 20 | CI preflight |
+| `/hubspot-cli-node-ci-preflight` | hubspot cli node ci preflight | CI preflight |
 | `/hubspot-legacy-crm-cards-to-app-cards` | hubspot legacy CRM cards app cards October 31 2026 | Plan app cards |
 | `/hubspot-marketplace-listing-checklist-2026` | hubspot marketplace listing checklist 2026 | Submit app |
 | `/hubspot-projects-cli-faq` | hubspot projects cli faq | Resolve confusion |
@@ -34,6 +34,7 @@ Win on long-tail task completion and deadline clarity. Official HubSpot docs sho
 - hubspot automatic migration private app not supported
 - hubspot platformVersion 2025.2 2026.03
 - hs project upload app-hsmeta.json not found
+- hubspot cli node ci preflight
 - hubspot cli github actions ci cd
 - hubspot app marketplace approval checklist 2026
 - hubspot projects cli preflight checklist
@@ -56,4 +57,3 @@ Every technical guide should link to:
 - command decision page;
 - relevant official source block;
 - Gumroad/skill pack page.
-
