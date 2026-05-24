@@ -29,7 +29,7 @@ export function ProductCTA({ variant = "bundle", placement }: Props) {
   const item = copy[variant];
   const Icon = item.icon;
   void placement;
-  const href = variant === "checklist" ? siteConfig.gumroad.pdf : siteConfig.gumroad.bundle;
+  const href = variant === "checklist" ? siteConfig.gumroad.pdf || siteConfig.gumroad.bundle : siteConfig.gumroad.bundle;
   const target = href || "/gumroad";
 
   return (

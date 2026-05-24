@@ -8,7 +8,7 @@ Last updated: 2026-05-24
 
 Name: Projects CLI Command Cheatsheet
 
-Price draft: $9
+Price draft: $1.90
 
 Includes:
 
@@ -22,7 +22,7 @@ Includes:
 
 Name: Projects CLI Skill Pack for HubSpot Developers
 
-Price draft: $19
+Price draft: $3.90
 
 Includes:
 
@@ -39,7 +39,7 @@ Includes:
 
 Name: Projects CLI Agency Handoff Kit
 
-Price draft: $49
+Price draft: $5.90
 
 Includes:
 

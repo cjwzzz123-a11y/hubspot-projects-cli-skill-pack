@@ -2,7 +2,7 @@
 
 ## Product 1: Projects CLI Command Cheatsheet
 
-Price: $9
+Price: $1.90
 
 Short description:
 
@@ -16,7 +16,7 @@ Deliverables:
 
 ## Product 2: Projects CLI Skill Pack for HubSpot Developers
 
-Price: $19
+Price: $3.90
 
 Short description:
 
@@ -35,7 +35,7 @@ Deliverables:
 
 ## Product 3: Agency Handoff License
 
-Price: $49
+Price: $5.90
 
 Short description:
 

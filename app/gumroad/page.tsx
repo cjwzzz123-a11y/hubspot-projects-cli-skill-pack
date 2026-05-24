@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, CheckCircle2, FileText, PackageCheck, Users, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, PackageCheck, type LucideIcon } from "lucide-react";
 import { Disclaimer } from "@/components/disclaimer";
 import { SourceLinks } from "@/components/source-links";
 import { officialSources, siteConfig } from "@/data/site";
@@ -14,30 +14,14 @@ export const metadata: Metadata = {
   },
 };
 
-const tiers: Array<{ key: "pdf" | "bundle" | "agency"; name: string; price: string; body: string; bestFor: string; Icon: LucideIcon }> = [
-  {
-    key: "pdf",
-    name: "PDF only",
-    price: "$9",
-    body: "A concise command map and affected/not affected checklist for an individual developer review.",
-    bestFor: "One developer who wants the two-page command cheatsheet.",
-    Icon: FileText,
-  },
+const tiers: Array<{ key: "bundle"; name: string; price: string; body: string; bestFor: string; Icon: LucideIcon }> = [
   {
     key: "bundle",
     name: "Full bundle",
-    price: "$19",
+    price: "$3.90",
     body: "PDF, Markdown checklist, CSV tracker, developer handoff, agent skill folder, and source map.",
     bestFor: "Developers or small teams preparing a source-linked Projects CLI handoff.",
     Icon: PackageCheck,
-  },
-  {
-    key: "agency",
-    name: "Agency/team",
-    price: "$49",
-    body: "Full bundle with agency license language for repeated internal client delivery workflows.",
-    bestFor: "Agencies and Solutions Partners reviewing multiple client apps.",
-    Icon: Users,
   },
 ];
 
@@ -51,7 +35,7 @@ const files = [
   "skill/ folder with SKILL.md and references",
 ];
 
-function getTierUrl(key: "pdf" | "bundle" | "agency") {
+function getTierUrl(key: "bundle") {
   return siteConfig.gumroad[key];
 }
 
@@ -73,7 +57,7 @@ function ProductButton({ href }: { href: string }) {
 }
 
 export default function GumroadPage() {
-  const hasAnyUrl = Boolean(siteConfig.gumroad.pdf || siteConfig.gumroad.bundle || siteConfig.gumroad.agency);
+  const hasAnyUrl = Boolean(siteConfig.gumroad.bundle);
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
@@ -93,7 +77,7 @@ export default function GumroadPage() {
         </div>
         <section className="rounded-md border border-line bg-white p-5 shadow-sm">
           <Image
-            src="/assets/generated/projects-cli-skill-pack-hero.png"
+            src="/assets/generated/projects-cli-skill-pack-gumroad-cover.png"
             width={1672}
             height={941}
             alt="Abstract product cover for a Projects CLI skill pack"
@@ -101,7 +85,7 @@ export default function GumroadPage() {
           />
           <h2 className="text-lg font-semibold text-ink">Checkout Status</h2>
           <p className="mt-3 text-sm leading-6 text-muted">
-            {hasAnyUrl ? "At least one Gumroad URL is configured. Product buttons below will open only configured URLs." : "Gumroad is not published yet. Add real product URLs with NEXT_PUBLIC_GUMROAD_PDF_URL, NEXT_PUBLIC_GUMROAD_BUNDLE_URL, and NEXT_PUBLIC_GUMROAD_AGENCY_URL after publishing."}
+            {hasAnyUrl ? "The Gumroad checkout URL is configured for the full bundle." : "Gumroad is not published yet. Add the real product URL with NEXT_PUBLIC_GUMROAD_BUNDLE_URL after publishing."}
           </p>
           <Link href="/hubspot-projects-cli-checklist" className="mt-5 inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-3 text-sm font-semibold text-white hover:bg-ink">
             Preview the free checklist
@@ -110,7 +94,7 @@ export default function GumroadPage() {
         </section>
       </section>
 
-      <section className="mt-10 grid gap-4 md:grid-cols-3">
+      <section className="mt-10 grid gap-4 md:grid-cols-[minmax(0,420px)]">
         {tiers.map(({ key, name, price, body, bestFor, Icon }) => (
           <div key={name} className="rounded-md border border-line bg-white p-5 shadow-sm">
             <Icon className="text-primary" size={22} aria-hidden="true" />
