@@ -79,7 +79,7 @@ export default function GumroadPage() {
     <main className="mx-auto max-w-6xl px-4 py-10">
       <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Product draft</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Gumroad-ready product page</p>
           <h1 className="mt-3 text-4xl font-semibold leading-tight text-ink md:text-5xl">Projects CLI App Creation Kit</h1>
           <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">
             A compact, unofficial checklist bundle for HubSpot developers and agencies moving new public app creation to Projects-based CLI workflows during the 2026 legacy public app creation sunset.

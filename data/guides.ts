@@ -530,7 +530,11 @@ export const trustPages = [
     slug: "contact",
     title: "Contact",
     description: "Contact and support notes.",
-    body: ["For support, use the contact address that will be added after the final domain and Gumroad account are connected."],
+    body: [
+      "For product support, use the support contact configured in the final Gumroad listing after publication.",
+      "Before Gumroad publication, treat this page as the support policy placeholder: buyers should receive help with file access, missing bundle contents, and clarification of the checklist workflow.",
+      "This project does not provide official HubSpot support, custom migration services, or guaranteed Marketplace approval.",
+    ],
   },
   {
     slug: "privacy",
@@ -540,6 +544,7 @@ export const trustPages = [
       "This site does not require login in v1.",
       "Outbound Gumroad purchases are handled by Gumroad according to Gumroad's own policies.",
       "Analytics may be used to understand page visits and CTA clicks after deployment.",
+      "Do not submit HubSpot tokens, client secrets, private app access tokens, or customer account credentials through this site.",
     ],
   },
   {
@@ -549,6 +554,8 @@ export const trustPages = [
     body: [
       siteConfig.disclaimer,
       "The content is provided for educational planning use and does not guarantee migration success, Marketplace approval, or compatibility with future HubSpot platform changes.",
+      "You are responsible for rechecking current HubSpot official documentation before production deployment, Marketplace submission, client handoff, or account-affecting changes.",
+      "Gumroad purchases, refunds, and delivery are handled through Gumroad after the real product URLs are configured.",
     ],
   },
 ];

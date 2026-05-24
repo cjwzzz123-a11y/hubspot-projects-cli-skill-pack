@@ -16,6 +16,7 @@ Includes:
 - affected/not affected table.
 - preflight checklist.
 - source verification links.
+- Markdown source and PDF export.
 
 ### Full Bundle
 
@@ -31,6 +32,8 @@ Includes:
 - developer handoff template.
 - agent skill folder.
 - official source map.
+- buyer delivery index.
+- installation instructions.
 
 ### Agency License
 
@@ -44,6 +47,7 @@ Includes:
 - agency usage language;
 - client handoff checklist;
 - internal QA checklist.
+- permission language for repeated internal client delivery workflows.
 
 ## CTA Copy
 
@@ -63,11 +67,18 @@ Includes:
 - Marketplace page: after listing checklist.
 - FAQ: after first five questions.
 
-## Gumroad Placeholder Behavior
+## Gumroad URL Behavior
 
-Before Gumroad URLs are supplied, CTAs should point to `/gumroad` and show "Gumroad link coming soon". Do not pretend the product is live.
+Before Gumroad URLs are supplied, CTAs should point to `/gumroad`. Product cards should show that checkout URLs are not configured. Do not pretend the product is live and do not invent checkout URLs.
+
+After Gumroad URLs are supplied, wire them through:
+
+```text
+NEXT_PUBLIC_GUMROAD_PDF_URL=
+NEXT_PUBLIC_GUMROAD_BUNDLE_URL=
+NEXT_PUBLIC_GUMROAD_AGENCY_URL=
+```
 
 ## Accuracy Note
 
 Independent educational checklist. Not affiliated with, endorsed by, or sponsored by HubSpot. Verify critical commands and platform behavior against official HubSpot documentation before deploying.
-
