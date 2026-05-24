@@ -1,0 +1,70 @@
+{
+  "lastChecked": "2026-05-24",
+  "disclaimer": "Unofficial educational source map. Verify current HubSpot official docs before deploying.",
+  "sources": [
+    {
+      "id": "legacy-public-app-creation-sunset",
+      "label": "Legacy Public App Creation Sunset",
+      "url": "https://developers.hubspot.com/changelog/legacy-public-app-creation-sunset",
+      "localFile": "docs/official-sources/hubspot/changelog-legacy-public-app-creation-sunset.md",
+      "use": ["deadline", "affected-not-affected"]
+    },
+    {
+      "id": "create-app",
+      "label": "Create a new app using the CLI",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/create-an-app",
+      "localFile": "docs/official-sources/hubspot/docs-apps-developer-platform-build-apps-create-an-app.md",
+      "use": ["new-app", "hs-project-create", "app-hsmeta"]
+    },
+    {
+      "id": "migration-overview",
+      "label": "Determine your migration path to 2026.03",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/migrate-an-app/overview",
+      "localFile": "docs/official-sources/hubspot/docs-apps-developer-platform-build-apps-migrate-an-app-overview.md",
+      "use": ["decision-tree", "platform-version"]
+    },
+    {
+      "id": "migrate-public-app",
+      "label": "Migrate an existing public app",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/migrate-an-app/migrate-an-existing-public-app",
+      "localFile": "docs/official-sources/hubspot/docs-apps-developer-platform-build-apps-migrate-an-app-migrate-an-existing-public-app.md",
+      "use": ["hs-app-migrate", "public-app"]
+    },
+    {
+      "id": "migrate-latest-platform",
+      "label": "Migrate an existing app to 2026.03",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/migrate-an-app/migrate-to-the-latest-platform-version",
+      "localFile": "docs/official-sources/hubspot/docs-apps-developer-platform-build-apps-migrate-an-app-migrate-to-the-latest-platform-version.md",
+      "use": ["2026.03", "hs-project-migrate", "private-app-limit"]
+    },
+    {
+      "id": "migrate-private-app",
+      "label": "Migrate an existing private app",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/migrate-an-app/migrate-an-existing-private-app",
+      "localFile": "docs/official-sources/hubspot/docs-apps-developer-platform-build-apps-migrate-an-app-migrate-an-existing-private-app.md",
+      "use": ["private-app", "manual-planning"]
+    },
+    {
+      "id": "cli-project-commands",
+      "label": "HubSpot CLI project commands",
+      "url": "https://developers.hubspot.com/docs/developer-tooling/local-development/hubspot-cli/project-commands",
+      "localFile": "docs/official-sources/hubspot/docs-developer-tooling-local-development-hubspot-cli-project-commands.md",
+      "use": ["commands", "project-create", "app-migrate"]
+    },
+    {
+      "id": "marketplace-listing",
+      "label": "Listing your app",
+      "url": "https://developers.hubspot.com/docs/apps/developer-platform/list-apps/listing-your-app/listing-your-app",
+      "localFile": "docs/official-sources/hubspot/docs-apps-developer-platform-list-apps-listing-your-app-listing-your-app.md",
+      "use": ["marketplace"]
+    },
+    {
+      "id": "crm-cards-deprecation",
+      "label": "Deprecating support for classic CRM cards",
+      "url": "https://developers.hubspot.com/changelog/deprecating-support-for-classic-crm-cards",
+      "localFile": "docs/official-sources/hubspot/changelog-deprecating-support-for-classic-crm-cards.md",
+      "use": ["crm-cards", "october-31-2026"]
+    }
+  ]
+}
+
