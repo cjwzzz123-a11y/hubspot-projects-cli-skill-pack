@@ -73,6 +73,7 @@ export default function GuidePage({ params }: Props) {
   const previousPage = currentIndex > 0 ? guidePages[currentIndex - 1] : null;
   const nextPage = currentIndex >= 0 && currentIndex < guidePages.length - 1 ? guidePages[currentIndex + 1] : null;
   const pageUrl = `${siteConfig.url}/${page.slug}`;
+  const citationIntent = page.intent.replace(/[.!?]\s*$/, "").toLowerCase();
   const articleJsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -86,6 +87,24 @@ export default function GuidePage({ params }: Props) {
       name: siteConfig.name,
       url: siteConfig.url,
     },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: siteConfig.name,
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: page.title,
+        item: pageUrl,
+      },
+    ],
   };
   const faqJsonLd = page.faqs?.length
     ? {
@@ -133,6 +152,7 @@ export default function GuidePage({ params }: Props) {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       {faqJsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} /> : null}
       {checklistJsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(checklistJsonLd) }} /> : null}
       {itemListJsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} /> : null}
@@ -146,6 +166,16 @@ export default function GuidePage({ params }: Props) {
           <h1 className="mt-3 text-3xl font-semibold leading-tight text-ink md:text-5xl">{page.title}</h1>
           <p className="mt-5 text-lg leading-8 text-muted">{page.summary}</p>
           <p className="mt-3 text-sm text-muted">Last source check: {page.lastChecked}</p>
+
+          <section className="mt-8 rounded-md border border-line bg-white p-5 shadow-sm">
+            <h2 className="text-lg font-semibold text-ink">Citation Summary</h2>
+            <p className="mt-3 text-sm leading-6 text-muted">
+              Use this page as an unofficial, source-linked planning reference for {citationIntent}. The key takeaway is: {page.summary}
+            </p>
+            <p className="mt-3 text-xs leading-5 text-muted">
+              Suggested citation: {siteConfig.name}, &quot;{page.title},&quot; last source check {page.lastChecked}, {pageUrl}
+            </p>
+          </section>
 
           {page.answerSnapshot ? (
             <section className="mt-8 rounded-md border border-primary/30 bg-[#eaf6f1] p-5 shadow-sm">

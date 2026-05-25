@@ -33,6 +33,7 @@ The May 26 and June 23, 2026 dates discussed here affect new legacy public app c
 
 - [Home](${siteConfig.url}): Guide hub, path finder, and product entry point.
 - [Glossary](${siteConfig.url}/glossary): Source-linked definitions for Projects CLI and migration terms.
+- [Official source index](${siteConfig.url}/sources): HubSpot official documentation and changelog sources used by this guide.
 - [Skill Pack](${siteConfig.url}/skill-pack): Agent-ready workflow overview.
 - [Gumroad product page](${siteConfig.url}/gumroad): Buyer-facing product page linking to the configured Gumroad checkout.
 

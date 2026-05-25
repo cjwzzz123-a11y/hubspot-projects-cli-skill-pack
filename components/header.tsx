@@ -22,6 +22,9 @@ export function Header() {
           <Link href="/skill-pack" className="hover:text-ink">
             Skill Pack
           </Link>
+          <Link href="/glossary" className="hover:text-ink">
+            Glossary
+          </Link>
           <Link href="/gumroad" className="inline-flex items-center gap-2 rounded-md bg-ink px-3 py-2 text-white hover:bg-primary">
             <ShoppingBag size={16} aria-hidden="true" />
             Products
@@ -31,4 +34,3 @@ export function Header() {
     </header>
   );
 }
-

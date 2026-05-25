@@ -5,7 +5,7 @@ export const siteConfig = {
     "An unofficial, source-linked guide and agent-ready skill pack for HubSpot Projects CLI app creation and migration planning.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://projectsappguide.com",
   gumroad: {
-    bundle: process.env.NEXT_PUBLIC_GUMROAD_BUNDLE_URL || "",
+    bundle: process.env.NEXT_PUBLIC_GUMROAD_BUNDLE_URL || "https://cjwizzle.gumroad.com/l/shbfg",
     pdf: process.env.NEXT_PUBLIC_GUMROAD_PDF_URL || "",
     agency: process.env.NEXT_PUBLIC_GUMROAD_AGENCY_URL || "",
   },

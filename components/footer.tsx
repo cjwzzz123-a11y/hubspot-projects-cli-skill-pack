@@ -11,6 +11,9 @@ export function Footer() {
         </div>
         <nav className="flex flex-wrap gap-4 md:justify-end">
           <Link href="/updates">Updates</Link>
+          <Link href="/sources">Sources</Link>
+          <Link href="/glossary">Glossary</Link>
+          <Link href="/llms.txt">llms.txt</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
           <Link href="/privacy">Privacy</Link>
@@ -20,4 +23,3 @@ export function Footer() {
     </footer>
   );
 }
-

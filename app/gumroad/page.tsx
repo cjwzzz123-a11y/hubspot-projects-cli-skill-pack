@@ -58,9 +58,49 @@ function ProductButton({ href }: { href: string }) {
 
 export default function GumroadPage() {
   const hasAnyUrl = Boolean(siteConfig.gumroad.bundle);
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Projects CLI App Creation Kit",
+    description:
+      "Unofficial checklist bundle for HubSpot developers and agencies preparing source-linked Projects CLI app creation and migration planning handoffs.",
+    image: `${siteConfig.url}/assets/generated/projects-cli-skill-pack-gumroad-cover.png`,
+    brand: {
+      "@type": "Brand",
+      name: siteConfig.name,
+    },
+    category: "Digital product",
+    offers: {
+      "@type": "Offer",
+      url: siteConfig.gumroad.bundle || `${siteConfig.url}/gumroad`,
+      priceCurrency: "USD",
+      price: "3.90",
+      availability: "https://schema.org/InStock",
+    },
+  };
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: siteConfig.name,
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects CLI App Creation Kit",
+        item: `${siteConfig.url}/gumroad`,
+      },
+    ],
+  };
 
   return (
     <main className="mx-auto max-w-6xl px-4 py-10">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <section className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_360px]">
         <div>
           <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Gumroad-ready product page</p>
@@ -69,7 +109,7 @@ export default function GumroadPage() {
             A compact, unofficial checklist bundle for HubSpot developers and agencies moving new public app creation to Projects-based CLI workflows during the 2026 legacy public app creation sunset.
           </p>
           <p className="mt-4 max-w-3xl text-sm leading-6 text-muted">
-            This page is ready for real Gumroad checkout URLs through environment variables. Until those URLs are supplied, no checkout link is invented and no payment is collected here.
+            This page links to the configured Gumroad checkout for the current bundle. Environment variables can override the checkout URL if the product listing changes later.
           </p>
           <div className="mt-7">
             <Disclaimer />
