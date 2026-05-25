@@ -42,7 +42,7 @@ export function ProductCTA({ variant = "bundle", placement }: Props) {
           <div>
             <h2 className="text-lg font-semibold">{item.title}</h2>
             <p className="mt-1 text-sm text-white/76">{item.body}</p>
-            <p className="mt-2 text-xs text-white/55">Independent educational product. Gumroad checkout opens here after real product URLs are configured.</p>
+            <p className="mt-2 text-xs text-white/55">Independent educational product. Gumroad checkout opens in a separate page; no official affiliation or guarantee is implied.</p>
           </div>
         </div>
         <Link href={target} className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-semibold text-ink hover:bg-[#eaf6f1]">

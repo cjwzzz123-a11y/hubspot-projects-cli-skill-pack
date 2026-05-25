@@ -9,6 +9,7 @@ export type GuidePage = {
   summary: string;
   sections: Array<{ heading: string; body: string[] }>;
   checks?: string[];
+  faqs?: Array<{ question: string; answer: string }>;
   sources: Array<{ label: string; url: string }>;
   related: string[];
   cta: "bundle" | "checklist" | "skill";
@@ -57,6 +58,23 @@ export const guidePages: GuidePage[] = [
       "If yes, review the Projects CLI create-app flow.",
       "If no, document whether you only need monitoring, modernization, or app-card planning.",
     ],
+    faqs: [
+      {
+        question: "Do existing legacy public apps stop working on May 26 or June 23, 2026?",
+        answer:
+          "No. This specific sunset affects new legacy public app creation through the legacy Developer Platform UI. It should not be described as a shutdown date for existing legacy public apps.",
+      },
+      {
+        question: "Who should care about the May and June 2026 dates?",
+        answer:
+          "Teams that need to create a new public or Marketplace app through the legacy UI after the relevant account-date cutoff should review the Projects-based CLI app creation path.",
+      },
+      {
+        question: "What is the safest next step?",
+        answer:
+          "Classify the app state, record whether the work is new app creation or modernization, then open the current HubSpot changelog and Projects CLI docs before choosing a command path.",
+      },
+    ],
     sources: [officialSources.sunset, officialSources.createApp],
     related: ["hubspot-projects-cli-checklist", "hs-project-create-marketplace-app", "hs-app-migrate-vs-hs-project-migrate"],
     cta: "checklist",
@@ -98,6 +116,23 @@ export const guidePages: GuidePage[] = [
       "Document whether `hs project create`, `hs app migrate`, or `hs project migrate` is the path to verify.",
       "Check Marketplace listing requirements before submission.",
     ],
+    faqs: [
+      {
+        question: "What should I check before running a HubSpot Projects CLI command?",
+        answer:
+          "Classify the app first, then record CLI version, Node version, authenticated account, project files, platform version, app configuration, scopes, redirect URLs, and source-check date.",
+      },
+      {
+        question: "Can this checklist replace HubSpot documentation?",
+        answer:
+          "No. It is an independent planning checklist. Production-affecting commands, uploads, submissions, and client handoffs should be verified against current official HubSpot documentation.",
+      },
+      {
+        question: "What does the paid bundle add?",
+        answer:
+          "The bundle packages the checklist into reusable buyer files, including a command cheatsheet, CSV inventory tracker, developer handoff template, agent skill folder, and source map.",
+      },
+    ],
     sources: [officialSources.createApp, officialSources.projectCommands, officialSources.migrationOverview, officialSources.marketplace],
     related: ["hs-app-migrate-vs-hs-project-migrate", "hubspot-app-hsmeta-json-structure", "hubspot-marketplace-listing-checklist-2026"],
     cta: "bundle",
@@ -138,6 +173,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Confirm the app is public/Marketplace scoped.", "Verify `app-hsmeta.json` before upload.", "Test install flow in a developer or test account."],
+    faqs: [
+      {
+        question: "When should I use hs project create?",
+        answer:
+          "Use it as the official path to review when creating a new Projects-based app. Do not use it as a substitute for planning an existing app migration.",
+      },
+      {
+        question: "Is a Marketplace app automatically ready after project creation?",
+        answer:
+          "No. Marketplace readiness also requires support, privacy, testing, install-flow, listing, and review materials checked against current HubSpot requirements.",
+      },
+    ],
     sources: [officialSources.createApp, officialSources.projectCommands, officialSources.marketplace],
     related: ["hubspot-projects-cli-checklist", "hubspot-marketplace-listing-checklist-2026", "hubspot-app-hsmeta-json-structure"],
     cta: "skill",
@@ -178,6 +225,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     sources: [officialSources.sunset, officialSources.createApp, officialSources.migrationOverview],
+    faqs: [
+      {
+        question: "Is the legacy public app sunset the same as a migration deadline?",
+        answer:
+          "No. The May and June 2026 sunset affects new legacy public app creation. Migration and platform-version work should be evaluated from the relevant migration sources.",
+      },
+      {
+        question: "How do I explain the difference to a client?",
+        answer:
+          "Separate new app creation, existing app modernization, Marketplace readiness, and CRM card modernization as different workstreams with different official sources.",
+      },
+    ],
     related: ["hubspot-legacy-public-app-creation-sunset", "hs-project-create-marketplace-app", "hs-app-migrate-vs-hs-project-migrate"],
     cta: "checklist",
   },
@@ -217,6 +276,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Find `hsproject.json`.", "Record `platformVersion`.", "Document app distribution.", "Open the official migration docs before running a command."],
+    faqs: [
+      {
+        question: "How do I choose between hs app migrate and hs project migrate?",
+        answer:
+          "Inspect the repo and app state first. Existing non-project legacy public apps, already project-based apps, and private apps point to different official migration guidance.",
+      },
+      {
+        question: "Should I run a migration command immediately?",
+        answer:
+          "No. Treat the command as a path to verify after app classification, file inspection, install-risk review, and a current official source check.",
+      },
+    ],
     sources: [officialSources.migrationOverview, officialSources.migratePublic, officialSources.migrateLatest, officialSources.projectCommands],
     related: ["hubspot-private-app-projects-migration", "hubspot-developer-platform-2026-03-upgrade", "hubspot-projects-cli-checklist"],
     cta: "bundle",
@@ -257,6 +328,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Confirm whether the app is private.", "Check for serverless functions.", "Document API token and backend implications.", "Read private app docs before choosing a path."],
+    faqs: [
+      {
+        question: "Can every private app be migrated automatically?",
+        answer:
+          "No. Private app cases need careful source-checked planning, and documented limitations may apply depending on the app state and target platform version.",
+      },
+      {
+        question: "What should a private app handoff include?",
+        answer:
+          "Include auth model, token handling, backend services, webhooks, UI extensions, serverless functions, CRM cards, current app state, and current source links.",
+      },
+    ],
     sources: [officialSources.migratePrivate, officialSources.migrateLatest, officialSources.migrationOverview],
     related: ["hs-app-migrate-vs-hs-project-migrate", "hubspot-projects-cli-checklist", "hubspot-developer-platform-2026-03-upgrade"],
     cta: "skill",
@@ -297,6 +380,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Record current `platformVersion`.", "Check whether the project is already on 2026.03.", "Review serverless function and app-card implications."],
+    faqs: [
+      {
+        question: "Is platformVersion 2026.03 the same as the May/June creation sunset?",
+        answer:
+          "No. Platform-version migration is a separate workstream from the legacy public app creation sunset.",
+      },
+      {
+        question: "What file should I inspect first for platform version?",
+        answer:
+          "Start with `hsproject.json`, then review app type, feature files, serverless functions, app cards, and current migration docs before changing files.",
+      },
+    ],
     sources: [officialSources.migrationOverview, officialSources.migrateLatest, officialSources.projectCommands],
     related: ["hs-app-migrate-vs-hs-project-migrate", "hubspot-projects-cli-checklist", "hubspot-private-app-projects-migration"],
     cta: "bundle",
@@ -337,6 +432,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Find `app-hsmeta.json`.", "Check UID changes.", "Check auth mode.", "Check redirect URLs.", "Check scopes and permitted URLs where relevant."],
+    faqs: [
+      {
+        question: "What is app-hsmeta.json used for?",
+        answer:
+          "It is a key Projects-based app configuration file. Review it with the rest of the project structure rather than treating it as an isolated JSON snippet.",
+      },
+      {
+        question: "Does a valid-looking app-hsmeta.json prove Marketplace readiness?",
+        answer:
+          "No. Marketplace readiness, install behavior, support materials, privacy materials, and review requirements still need separate verification.",
+      },
+    ],
     sources: [officialSources.createApp, officialSources.migratePrivate, officialSources.projectCommands],
     related: ["hs-project-create-marketplace-app", "hubspot-projects-cli-checklist", "hubspot-cli-node-ci-preflight"],
     cta: "checklist",
@@ -377,6 +484,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Record `hs --version`.", "Record Node version.", "Document account ID handling.", "Document secret storage.", "Run build/upload only after source verification."],
+    faqs: [
+      {
+        question: "What should CI record before HubSpot CLI uploads?",
+        answer:
+          "Record CLI version, Node version, target account strategy, secret storage, selected command path, and a current source-check date.",
+      },
+      {
+        question: "Should CI logs include HubSpot secrets?",
+        answer:
+          "No. Do not paste tokens, client secrets, private keys, or account credentials into docs, tickets, logs, or agent prompts.",
+      },
+    ],
     sources: [officialSources.cliReference, officialSources.projectCommands],
     related: ["hubspot-projects-cli-checklist", "hubspot-app-hsmeta-json-structure", "hs-app-migrate-vs-hs-project-migrate"],
     cta: "bundle",
@@ -417,6 +536,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Inventory classic CRM cards.", "Review app cards docs.", "Assign modernization owner.", "Plan before October 31, 2026."],
+    faqs: [
+      {
+        question: "Is the CRM card deadline part of the May/June public app creation sunset?",
+        answer:
+          "No. CRM card modernization is a separate app-card workstream with its own official sources and planning deadline.",
+      },
+      {
+        question: "What should I inventory for CRM card modernization?",
+        answer:
+          "List each legacy or classic CRM card, object location, data source, UI behavior, scopes, backend owner, and test plan.",
+      },
+    ],
     sources: [officialSources.crmCards, officialSources.crmCardsChangelog],
     related: ["hubspot-projects-cli-checklist", "hubspot-marketplace-listing-checklist-2026", "hubspot-developer-platform-2026-03-upgrade"],
     cta: "skill",
@@ -457,6 +588,18 @@ export const guidePages: GuidePage[] = [
       },
     ],
     checks: ["Support contact ready.", "Privacy policy URL ready.", "Testing instructions drafted.", "Install flow tested.", "Listing owner assigned."],
+    faqs: [
+      {
+        question: "Does Projects CLI readiness guarantee Marketplace approval?",
+        answer:
+          "No. A project can be technically organized and still need listing, support, privacy, testing, install-flow, and review materials.",
+      },
+      {
+        question: "What should agencies prepare before submission?",
+        answer:
+          "Prepare a reusable packet with app inventory, source-check date, support/privacy owners, testing instructions, screenshots/assets status, and current official listing requirements.",
+      },
+    ],
     sources: [officialSources.marketplace, officialSources.marketplaceRequirements],
     related: ["hs-project-create-marketplace-app", "hubspot-projects-cli-checklist", "hubspot-legacy-crm-cards-to-app-cards"],
     cta: "bundle",
@@ -497,6 +640,23 @@ export const guidePages: GuidePage[] = [
       },
     ],
     sources: [officialSources.sunset, officialSources.migrationOverview, officialSources.migratePrivate, officialSources.projectCommands],
+    faqs: [
+      {
+        question: "Is this site official HubSpot documentation?",
+        answer:
+          "No. It is an independent educational guide that links to public HubSpot documentation and should be verified against current official sources.",
+      },
+      {
+        question: "Does the paid bundle perform a migration?",
+        answer:
+          "No. It packages planning files and an agent-ready workflow. It does not automate migration, certify compliance, or guarantee Marketplace approval.",
+      },
+      {
+        question: "What is the fastest way to use the site?",
+        answer:
+          "Start with the checklist, classify the app, open the relevant official source links, then use the related guide pages for the likely command or planning path.",
+      },
+    ],
     related: ["hubspot-legacy-public-app-creation-sunset", "hs-app-migrate-vs-hs-project-migrate", "hubspot-private-app-projects-migration"],
     cta: "skill",
   },

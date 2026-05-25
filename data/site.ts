@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Unofficial Projects CLI migration guidance for HubSpot developers",
   description:
     "An unofficial, source-linked guide and agent-ready skill pack for HubSpot Projects CLI app creation and migration planning.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://hubspot-projects-cli-skill-pack.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://projectsappguide.com",
   gumroad: {
     bundle: process.env.NEXT_PUBLIC_GUMROAD_BUNDLE_URL || "",
     pdf: process.env.NEXT_PUBLIC_GUMROAD_PDF_URL || "",
