@@ -131,6 +131,9 @@ export default function HomePage() {
             <Link href="/hubspot-projects-cli-faq" className="text-sm font-semibold text-primary hover:text-ink">
               Open FAQ
             </Link>
+            <Link href="/answers" className="text-sm font-semibold text-primary hover:text-ink">
+              Open Answers
+            </Link>
             <Link href="/glossary" className="text-sm font-semibold text-primary hover:text-ink">
               Open Glossary
             </Link>

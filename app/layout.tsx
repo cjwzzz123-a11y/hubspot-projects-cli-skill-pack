@@ -13,6 +13,27 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  openGraph: {
+    title: `${siteConfig.name} | HubSpot Projects CLI Checklist`,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: "/assets/generated/projects-cli-skill-pack-hero.png",
+        width: 1672,
+        height: 941,
+        alt: "Projects CLI skill pack workflow cover",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} | HubSpot Projects CLI Checklist`,
+    description: siteConfig.description,
+    images: ["/assets/generated/projects-cli-skill-pack-hero.png"],
+  },
   alternates: {
     canonical: "/",
   },

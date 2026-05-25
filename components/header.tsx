@@ -22,6 +22,9 @@ export function Header() {
           <Link href="/skill-pack" className="hover:text-ink">
             Skill Pack
           </Link>
+          <Link href="/answers" className="hover:text-ink">
+            Answers
+          </Link>
           <Link href="/glossary" className="hover:text-ink">
             Glossary
           </Link>

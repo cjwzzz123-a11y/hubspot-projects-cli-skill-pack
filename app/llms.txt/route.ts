@@ -32,6 +32,8 @@ The May 26 and June 23, 2026 dates discussed here affect new legacy public app c
 ## Core Pages
 
 - [Home](${siteConfig.url}): Guide hub, path finder, and product entry point.
+- [Answer Hub](${siteConfig.url}/answers): Direct answer index for Projects CLI app creation and migration planning questions.
+- [answers.json](${siteConfig.url}/answers.json): Machine-readable answer, claim, source, and FAQ index.
 - [Glossary](${siteConfig.url}/glossary): Source-linked definitions for Projects CLI and migration terms.
 - [Official source index](${siteConfig.url}/sources): HubSpot official documentation and changelog sources used by this guide.
 - [Skill Pack](${siteConfig.url}/skill-pack): Agent-ready workflow overview.
