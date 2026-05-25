@@ -87,8 +87,8 @@ export default function HomePage() {
             <p className="text-sm font-semibold uppercase tracking-[0.12em] text-primary">Choose your path</p>
             <h2 className="mt-2 text-2xl font-semibold text-ink">Start With The Question You Actually Have</h2>
           </div>
-          <Link href="/hubspot-projects-cli-faq" className="text-sm font-semibold text-primary hover:text-ink">
-            Read FAQ
+          <Link href="/answers" className="text-sm font-semibold text-primary hover:text-ink">
+            Open Answer Hub
           </Link>
         </div>
         <div className="mt-6 grid gap-4 lg:grid-cols-3">
@@ -128,9 +128,6 @@ export default function HomePage() {
                 Each page targets a concrete search intent and links back to official HubSpot documentation. Start with the closest match, then follow the related guides.
               </p>
             </div>
-            <Link href="/hubspot-projects-cli-faq" className="text-sm font-semibold text-primary hover:text-ink">
-              Open FAQ
-            </Link>
             <Link href="/answers" className="text-sm font-semibold text-primary hover:text-ink">
               Open Answers
             </Link>
