@@ -7,6 +7,13 @@ export type GuidePage = {
   intent: string;
   lastChecked: string;
   summary: string;
+  answerSnapshot?: {
+    shortAnswer: string;
+    appliesTo: string;
+    verify: string;
+    boundary: string;
+  };
+  claims?: Array<{ claim: string; source: { label: string; url: string } }>;
   sections: Array<{ heading: string; body: string[] }>;
   checks?: string[];
   faqs?: Array<{ question: string; answer: string }>;
@@ -27,6 +34,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "The May/June sunset disables new legacy public app creation in the legacy UI. It does not mean existing legacy public apps stop functioning under this specific event.",
+    answerSnapshot: {
+      shortAnswer:
+        "The May 26 and June 23, 2026 HubSpot dates affect new legacy public app creation through the legacy Developer Platform UI, not existing legacy public app runtime under this specific sunset.",
+      appliesTo: "Developer teams planning to create a new public or Marketplace app after the relevant account-date cutoff.",
+      verify: "Open HubSpot's legacy public app creation sunset changelog and the Projects CLI create-app docs before choosing a path.",
+      boundary: "Do not describe these dates as an existing legacy public app shutdown notice.",
+    },
+    claims: [
+      {
+        claim: "May 26, 2026 affects new developer accounts created on or after that date.",
+        source: officialSources.sunset,
+      },
+      {
+        claim: "June 23, 2026 affects developer accounts created before May 26, 2026.",
+        source: officialSources.sunset,
+      },
+      {
+        claim: "The safer next step for new public app creation is to review the Projects-based CLI app creation path.",
+        source: officialSources.createApp,
+      },
+    ],
     sections: [
       {
         heading: "What changed",
@@ -88,6 +116,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Use this checklist to classify the app, verify local environment, inspect project files, and choose a command path to verify in official docs.",
+    answerSnapshot: {
+      shortAnswer:
+        "Before running HubSpot Projects CLI commands, classify the app, inspect project files, record environment details, and identify the official command path to verify.",
+      appliesTo: "Developers and agencies preparing new app creation, migration planning, Marketplace readiness, or CI upload workflows.",
+      verify: "Check current HubSpot CLI create-app, project command, migration, and Marketplace listing docs before production-affecting work.",
+      boundary: "This checklist is a planning and handoff aid, not an official HubSpot migration instruction or approval guarantee.",
+    },
+    claims: [
+      {
+        claim: "New app creation, public app migration, project migration, private app planning, and CRM card modernization should be classified separately.",
+        source: officialSources.migrationOverview,
+      },
+      {
+        claim: "`hs project create`, project upload, and project open commands should be checked against current project command documentation.",
+        source: officialSources.projectCommands,
+      },
+      {
+        claim: "Marketplace readiness needs listing and review materials beyond project file readiness.",
+        source: officialSources.marketplace,
+      },
+    ],
     sections: [
       {
         heading: "Preflight order",
@@ -146,6 +195,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "HubSpot's create-app docs describe new developer platform apps as initialized using the HubSpot CLI, with `hs project create` as the setup command to review.",
+    answerSnapshot: {
+      shortAnswer:
+        "`hs project create` is the Projects CLI path to review when creating a new HubSpot developer platform app.",
+      appliesTo: "Teams creating a new public or Marketplace app rather than modernizing an existing app.",
+      verify: "Open the create-app docs, project commands docs, and Marketplace listing docs before upload or submission.",
+      boundary: "Do not use new app creation guidance as a substitute for an existing app migration plan.",
+    },
+    claims: [
+      {
+        claim: "New developer platform apps are created through the HubSpot CLI workflow.",
+        source: officialSources.createApp,
+      },
+      {
+        claim: "`hs project create` is a project command to verify for new app creation.",
+        source: officialSources.projectCommands,
+      },
+      {
+        claim: "Marketplace submission has separate listing requirements and review materials.",
+        source: officialSources.marketplace,
+      },
+    ],
     sections: [
       {
         heading: "When this path fits",
@@ -198,6 +268,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "The sunset is about creating new legacy public apps. Projects-based apps are the path HubSpot directs new public app development toward.",
+    answerSnapshot: {
+      shortAnswer:
+        "The key distinction is creation versus modernization: the May/June 2026 sunset affects new legacy public app creation, while migration decisions depend on the existing app state.",
+      appliesTo: "Stakeholders deciding whether a HubSpot app needs new app creation, modernization, migration planning, or a separate card workstream.",
+      verify: "Compare the sunset changelog with the create-app and migration overview docs before telling a client what changed.",
+      boundary: "Do not collapse all older HubSpot app work into one migration deadline.",
+    },
+    claims: [
+      {
+        claim: "The legacy public app sunset concerns new legacy public app creation.",
+        source: officialSources.sunset,
+      },
+      {
+        claim: "New Projects-based app development should be reviewed from the create-app docs.",
+        source: officialSources.createApp,
+      },
+      {
+        claim: "Existing app migration paths should be evaluated from migration documentation.",
+        source: officialSources.migrationOverview,
+      },
+    ],
     sections: [
       {
         heading: "The difference that matters",
@@ -249,6 +340,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Use app structure and platform version to decide which path to verify. Non-project legacy public app, existing project app, and private app cases should not be collapsed into one generic migration step.",
+    answerSnapshot: {
+      shortAnswer:
+        "Choose between `hs app migrate` and `hs project migrate` only after inspecting whether the app is non-project legacy, already project-based, public, private, and which platform version it uses.",
+      appliesTo: "Developers with an existing HubSpot app who need to identify the likely migration command path to verify.",
+      verify: "Open the migration overview, public app migration, latest-platform migration, and project command docs before running a command.",
+      boundary: "Treat commands as paths to verify, not commands to run from memory.",
+    },
+    claims: [
+      {
+        claim: "`hs app migrate` belongs to public app migration guidance, not new app creation.",
+        source: officialSources.migratePublic,
+      },
+      {
+        claim: "`hs project migrate` and platform-version decisions should be checked against migration and project command docs.",
+        source: officialSources.migrateLatest,
+      },
+      {
+        claim: "The migration path depends on app state and current project structure.",
+        source: officialSources.migrationOverview,
+      },
+    ],
     sections: [
       {
         heading: "Decision rule",
@@ -301,6 +413,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Private app cases require special care. The latest-platform migration docs warn that migrating a legacy non-project-based private app to 2026.03 is not currently supported.",
+    answerSnapshot: {
+      shortAnswer:
+        "Private app migration should be treated as source-checked planning; do not assume every private app has an automatic Projects CLI migration path.",
+      appliesTo: "Teams reviewing existing private apps, especially legacy non-project-based private apps.",
+      verify: "Open current private app migration and latest-platform migration docs before proposing a command or replacement path.",
+      boundary: "Do not promise automatic private app migration, compatibility, or official approval.",
+    },
+    claims: [
+      {
+        claim: "Private app migration has separate guidance from public app migration.",
+        source: officialSources.migratePrivate,
+      },
+      {
+        claim: "Legacy non-project-based private app migration to 2026.03 has documented limitations.",
+        source: officialSources.migrateLatest,
+      },
+      {
+        claim: "Private app work may require manual planning depending on current app state and features.",
+        source: officialSources.migrationOverview,
+      },
+    ],
     sections: [
       {
         heading: "Why this needs caution",
@@ -353,6 +486,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "The 2026.03 platform version is central to current migration docs. Check `hsproject.json`, current `platformVersion`, and supported migration path before making changes.",
+    answerSnapshot: {
+      shortAnswer:
+        "A 2026.03 upgrade starts with `hsproject.json`, current `platformVersion`, app type, and the supported migration path in current HubSpot docs.",
+      appliesTo: "Teams maintaining existing project-based apps or evaluating migration to the latest HubSpot developer platform version.",
+      verify: "Open the migration overview, latest-platform migration, and project command docs before changing platformVersion or uploading.",
+      boundary: "Do not treat 2026.03 platform work as the same event as the May/June legacy public app creation sunset.",
+    },
+    claims: [
+      {
+        claim: "`platformVersion` should be inspected in the project configuration before upgrade planning.",
+        source: officialSources.migrationOverview,
+      },
+      {
+        claim: "Latest-platform migration guidance includes cases and limitations that should be checked before changes.",
+        source: officialSources.migrateLatest,
+      },
+      {
+        claim: "Project command behavior should be checked against current CLI project command docs.",
+        source: officialSources.projectCommands,
+      },
+    ],
     sections: [
       {
         heading: "What to inspect",
@@ -405,6 +559,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "`app-hsmeta.json` is a key app schema file in Projects-based app workflows. Its location and fields should be checked before upload or migration.",
+    answerSnapshot: {
+      shortAnswer:
+        "`app-hsmeta.json` should be reviewed with the full HubSpot project structure before upload, migration, or install-flow testing.",
+      appliesTo: "Developers troubleshooting Projects-based app structure, identifiers, auth settings, redirect URLs, scopes, and upload readiness.",
+      verify: "Open create-app, project command, and relevant migration docs before changing app identifiers or auth configuration.",
+      boundary: "A valid-looking app file does not prove Marketplace readiness or official approval.",
+    },
+    claims: [
+      {
+        claim: "Projects-based app configuration should be reviewed in the context of the project structure.",
+        source: officialSources.createApp,
+      },
+      {
+        claim: "Private app cases can have migration limitations and should not be inferred from public app examples.",
+        source: officialSources.migratePrivate,
+      },
+      {
+        claim: "Upload and local project commands should be verified from current project command docs.",
+        source: officialSources.projectCommands,
+      },
+    ],
     sections: [
       {
         heading: "What to verify",
@@ -457,6 +632,23 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Before a Projects CLI migration or upload, record CLI version, Node version, account auth, and CI secret handling. Recheck the current CLI reference before changing pipelines.",
+    answerSnapshot: {
+      shortAnswer:
+        "A HubSpot CLI CI preflight should record versions, target account strategy, secret handling, selected command path, and source-check date before upload automation.",
+      appliesTo: "Teams adding HubSpot Projects CLI upload or migration steps to local development and CI/CD workflows.",
+      verify: "Open the current CLI reference and project command docs before changing pipeline behavior.",
+      boundary: "Do not expose HubSpot tokens, client secrets, private keys, or account credentials in logs or prompts.",
+    },
+    claims: [
+      {
+        claim: "CLI behavior should be checked against the current HubSpot CLI reference.",
+        source: officialSources.cliReference,
+      },
+      {
+        claim: "Project commands should be checked before CI upload automation is enabled.",
+        source: officialSources.projectCommands,
+      },
+    ],
     sections: [
       {
         heading: "CI preflight",
@@ -509,6 +701,23 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Classic/legacy CRM cards have a separate October 31, 2026 migration deadline. Do not mix this deadline with the May/June public app creation sunset.",
+    answerSnapshot: {
+      shortAnswer:
+        "Legacy or classic CRM card modernization is a separate app-card workstream and should not be merged with the May/June legacy public app creation sunset.",
+      appliesTo: "Apps using classic or legacy CRM cards that need app-card modernization planning.",
+      verify: "Open HubSpot CRM card docs and the classic CRM card deprecation changelog before planning card replacement.",
+      boundary: "Use October 31, 2026 for CRM card modernization only, not for the public app creation sunset.",
+    },
+    claims: [
+      {
+        claim: "Legacy or classic CRM card work has separate official guidance from public app creation.",
+        source: officialSources.crmCards,
+      },
+      {
+        claim: "The October 31, 2026 date belongs to the classic CRM cards deprecation workstream.",
+        source: officialSources.crmCardsChangelog,
+      },
+    ],
     sections: [
       {
         heading: "Separate track",
@@ -561,6 +770,23 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Projects CLI readiness is not the same as Marketplace readiness. Prepare listing fields, support details, privacy URL, testing instructions, and install flow evidence.",
+    answerSnapshot: {
+      shortAnswer:
+        "Marketplace readiness is separate from Projects CLI readiness; a structured project still needs listing, support, privacy, testing, and install-flow evidence.",
+      appliesTo: "Teams preparing a HubSpot public or Marketplace app for review or client handoff.",
+      verify: "Open current HubSpot listing and Marketplace listing requirements before submission.",
+      boundary: "No independent checklist can guarantee Marketplace approval.",
+    },
+    claims: [
+      {
+        claim: "Marketplace listing requires its own submission and listing preparation work.",
+        source: officialSources.marketplace,
+      },
+      {
+        claim: "Marketplace listing requirements should be checked before submission.",
+        source: officialSources.marketplaceRequirements,
+      },
+    ],
     sections: [
       {
         heading: "Listing readiness",
@@ -613,6 +839,27 @@ export const guidePages: GuidePage[] = [
     lastChecked,
     summary:
       "Use this FAQ for quick orientation, then open the relevant official HubSpot docs before making production changes.",
+    answerSnapshot: {
+      shortAnswer:
+        "The fastest safe workflow is to classify the app, open the relevant official HubSpot source, and use the guide pages to prepare a source-linked handoff.",
+      appliesTo: "Developers, agencies, and product stakeholders with quick questions about Projects CLI, migration paths, and the 2026 creation sunset.",
+      verify: "Open the current HubSpot changelog, migration docs, private app docs, and project command docs for the specific case.",
+      boundary: "This site is an independent educational guide, not official HubSpot documentation.",
+    },
+    claims: [
+      {
+        claim: "The May/June 2026 sunset should be understood from the official changelog.",
+        source: officialSources.sunset,
+      },
+      {
+        claim: "Migration paths should be checked from current migration overview docs.",
+        source: officialSources.migrationOverview,
+      },
+      {
+        claim: "Private app cases need special caution and current source verification.",
+        source: officialSources.migratePrivate,
+      },
+    ],
     sections: [
       {
         heading: "Common questions",

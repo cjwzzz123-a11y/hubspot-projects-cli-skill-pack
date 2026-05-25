@@ -101,11 +101,41 @@ export default function GuidePage({ params }: Props) {
         })),
       }
     : null;
+  const checklistJsonLd =
+    page.slug === "hubspot-projects-cli-checklist" && page.checks?.length
+      ? {
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: page.title,
+          description: page.description,
+          step: page.checks.map((check, index) => ({
+            "@type": "HowToStep",
+            position: index + 1,
+            name: check,
+            text: check,
+          })),
+        }
+      : null;
+  const itemListJsonLd =
+    page.slug === "hubspot-projects-cli-checklist" && page.checks?.length
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          name: "HubSpot Projects CLI preflight checklist",
+          itemListElement: page.checks.map((check, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: check,
+          })),
+        }
+      : null;
 
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }} />
       {faqJsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} /> : null}
+      {checklistJsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(checklistJsonLd) }} /> : null}
+      {itemListJsonLd ? <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} /> : null}
       <article className="mx-auto grid max-w-6xl gap-8 px-4 py-10 lg:grid-cols-[minmax(0,1fr)_320px]">
         <div className="min-w-0">
           <Link href="/" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-ink">
@@ -116,6 +146,32 @@ export default function GuidePage({ params }: Props) {
           <h1 className="mt-3 text-3xl font-semibold leading-tight text-ink md:text-5xl">{page.title}</h1>
           <p className="mt-5 text-lg leading-8 text-muted">{page.summary}</p>
           <p className="mt-3 text-sm text-muted">Last source check: {page.lastChecked}</p>
+
+          {page.answerSnapshot ? (
+            <section className="mt-8 rounded-md border border-primary/30 bg-[#eaf6f1] p-5 shadow-sm">
+              <h2 className="text-lg font-semibold text-ink">Answer Snapshot</h2>
+              <dl className="mt-4 grid gap-4">
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">Short Answer</dt>
+                  <dd className="mt-1 text-sm leading-6 text-ink">{page.answerSnapshot.shortAnswer}</dd>
+                </div>
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">Applies To</dt>
+                    <dd className="mt-1 text-sm leading-6 text-muted">{page.answerSnapshot.appliesTo}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">Verify</dt>
+                    <dd className="mt-1 text-sm leading-6 text-muted">{page.answerSnapshot.verify}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-primary">Boundary</dt>
+                    <dd className="mt-1 text-sm leading-6 text-muted">{page.answerSnapshot.boundary}</dd>
+                  </div>
+                </div>
+              </dl>
+            </section>
+          ) : null}
 
           <nav aria-label="On this page" className="mt-8 rounded-md border border-line bg-white p-5 shadow-sm">
             <h2 className="text-base font-semibold text-ink">On This Page</h2>
@@ -128,6 +184,11 @@ export default function GuidePage({ params }: Props) {
               {page.checks ? (
                 <a href="#checklist" className="text-sm font-medium text-primary hover:text-ink">
                   Checklist
+                </a>
+              ) : null}
+              {page.claims?.length ? (
+                <a href="#claim-source-map" className="text-sm font-medium text-primary hover:text-ink">
+                  Claim / Source Map
                 </a>
               ) : null}
               {page.faqs?.length ? (
@@ -168,6 +229,37 @@ export default function GuidePage({ params }: Props) {
                   </li>
                 ))}
               </ul>
+            </section>
+          ) : null}
+
+          {page.claims?.length ? (
+            <section id="claim-source-map" className="mt-8 scroll-mt-24 rounded-md border border-line bg-white p-6 shadow-sm">
+              <h2 className="text-xl font-semibold text-ink">Claim / Source Map</h2>
+              <p className="mt-2 text-sm leading-6 text-muted">
+                These are the main claims this page relies on. Re-open the linked official HubSpot source before production-affecting commands, uploads, submissions, or client delivery.
+              </p>
+              <div className="mt-5 overflow-hidden rounded-md border border-line">
+                <table className="w-full text-left text-sm">
+                  <thead className="bg-[#f8faf8] text-ink">
+                    <tr>
+                      <th className="px-4 py-3 font-semibold">Claim</th>
+                      <th className="px-4 py-3 font-semibold">Official source</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-line text-muted">
+                    {page.claims.map((item) => (
+                      <tr key={item.claim}>
+                        <td className="px-4 py-3 align-top leading-6">{item.claim}</td>
+                        <td className="px-4 py-3 align-top">
+                          <a href={item.source.url} target="_blank" rel="noreferrer" className="font-medium text-primary hover:text-ink">
+                            {item.source.label}
+                          </a>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </section>
           ) : null}
 
