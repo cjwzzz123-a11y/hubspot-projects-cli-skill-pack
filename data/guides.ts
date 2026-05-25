@@ -831,6 +831,263 @@ export const guidePages: GuidePage[] = [
     cta: "bundle",
   },
   {
+    slug: "hubspot-project-upload-checklist",
+    title: "HubSpot hs project upload Checklist",
+    description:
+      "A source-linked checklist for using hs project upload without confusing upload, build, deploy, account targeting, JSON config changes, and Marketplace readiness.",
+    intent: "Prepare a safer project upload.",
+    lastChecked,
+    summary:
+      "`hs project upload` uploads a HubSpot project and creates a build. Teams should verify account targeting, auto-deploy behavior, UID stability, auth configuration, and Marketplace implications before using it for meaningful changes.",
+    answerSnapshot: {
+      shortAnswer:
+        "`hs project upload` uploads the current project to HubSpot and creates a build; if auto-deploy is enabled, a successful build may deploy automatically.",
+      appliesTo: "Developers moving a Projects-based HubSpot app from local work toward a sandbox, test account, or main account upload.",
+      verify: "Open the current HubSpot CLI project commands docs and create-app docs before uploading to a production-affecting account.",
+      boundary: "This checklist does not guarantee a successful build, deployment, install flow, or Marketplace review.",
+    },
+    claims: [
+      {
+        claim: "`hs project upload` uploads a project to HubSpot and creates a build.",
+        source: officialSources.projectCommands,
+      },
+      {
+        claim: "A project configured to auto-deploy can deploy automatically after a successful build, and new projects are documented as auto-deploy by default.",
+        source: officialSources.projectCommands,
+      },
+      {
+        claim: "Changing component UIDs after upload can cause HubSpot to recognize a component as different from previous builds.",
+        source: officialSources.createApp,
+      },
+    ],
+    sections: [
+      {
+        heading: "Before you upload",
+        body: [
+          "Treat `hs project upload` as a change-management moment, not a casual sync command. The official project commands docs describe it as uploading a project to HubSpot and creating a build, with auto-deploy behavior depending on project settings. That means the checklist should start with the target account, the current project state, and whether a successful build can become a deployed change.",
+          "Confirm which account name in `~/.hscli/config.yml` is intended for the upload. HubSpot documents `--account=accountName` for targeting a specific account, including workflows that move from sandbox to main account. For agency work, make the account name explicit in the handoff so a developer is not relying on whichever account was last authenticated in a terminal.",
+          "Inspect `hsproject.json`, `app-hsmeta.json`, and feature configuration before upload. If you changed OAuth settings, redirect URLs, scopes, app cards, settings pages, or other JSON configuration, record exactly what changed and why. Keep UID changes especially visible because the create-app docs warn that changed UIDs can make the platform treat a component as different from previous builds.",
+        ],
+      },
+      {
+        heading: "Upload vs deploy",
+        body: [
+          "The most important SEO answer for searchers is simple: upload and deploy are related but not identical. `hs project upload` creates a build. If the project is configured to auto-deploy, that successful build can deploy automatically; if it is not, a manual deploy step may be needed. Always check current project settings and current docs before giving a stakeholder a go-live expectation.",
+          "For a sandbox-to-main workflow, use a written release note even if the code change is small. Include the command planned, account target, expected build behavior, rollback owner, and what to test after upload. This is especially useful when an AI agent or junior developer is preparing the command but a senior developer owns the account consequence.",
+          "Do not describe this guide as a deployment guarantee. A clean local project and a correct command can still fail because of account permissions, app configuration, platform validation, missing backend OAuth configuration, Marketplace requirements, or changes in HubSpot documentation after this source-check date.",
+        ],
+      },
+      {
+        heading: "Production-minded checklist",
+        body: [
+          "A useful pre-upload packet contains: source-check date, CLI version, target account, project directory, changed files, expected auth mode, redirect URLs, scopes, UID changes, auto-deploy setting, test plan, and owner. That packet is small enough to paste into a pull request, issue, or client delivery note.",
+          "For public or Marketplace apps, connect upload readiness to install-flow readiness. HubSpot's create-app docs describe post-upload work around installation and OAuth app credentials. If your backend OAuth server still lacks the correct client ID or client secret, an uploaded project is not the same as a tested app.",
+          "After upload, capture build result, deploy result if applicable, app install result, and any manual follow-up. Those notes help the next developer distinguish a command failure from an auth failure, a Marketplace readiness gap, or an unsupported assumption.",
+        ],
+      },
+    ],
+    checks: [
+      "Record `hs --version` and source-check date.",
+      "Confirm the intended HubSpot account and use `--account=accountName` when appropriate.",
+      "Check whether the project is configured for auto-deploy.",
+      "Review changed JSON configuration files before upload.",
+      "Flag UID changes before upload.",
+      "Confirm OAuth redirect URLs, scopes, and backend credential readiness when applicable.",
+      "Write the post-upload test plan before running the command.",
+    ],
+    faqs: [
+      {
+        question: "Does hs project upload deploy automatically?",
+        answer:
+          "It can, depending on project auto-deploy settings. HubSpot's project command docs say an auto-deploy project deploys after a successful build, and new projects are documented as auto-deploy by default.",
+      },
+      {
+        question: "How do I avoid uploading to the wrong HubSpot account?",
+        answer:
+          "Record the intended account before upload and review HubSpot's documented `--account=accountName` option for targeting a specific account from your CLI config.",
+      },
+      {
+        question: "Should I change UIDs before upload?",
+        answer:
+          "Only with deliberate review. HubSpot's create-app docs note that changing a UID after upload may make the platform recognize the component as different from previous builds.",
+      },
+    ],
+    sources: [officialSources.projectCommands, officialSources.createApp, officialSources.marketplaceRequirements],
+    related: ["hubspot-projects-cli-checklist", "hubspot-project-dev-local-development", "hubspot-oauth-redirect-scopes-install-checklist"],
+    cta: "checklist",
+  },
+  {
+    slug: "hubspot-project-dev-local-development",
+    title: "HubSpot hs project dev Local Development Guide",
+    description:
+      "A practical guide to hs project dev, local UI extension development, JSON config upload boundaries, and source-linked QA notes for HubSpot Projects apps.",
+    intent: "Use local development without overtrusting it.",
+    lastChecked,
+    summary:
+      "`hs project dev` starts a local development server for supported HubSpot project extension work. It can refresh supported JSX UI changes, but JSON config changes still need manual upload.",
+    answerSnapshot: {
+      shortAnswer:
+        "`hs project dev` starts a local development server; supported JSX changes can refresh in the browser, while `.json` config changes need `hs project upload`.",
+      appliesTo: "Developers building or testing HubSpot app cards, settings pages, and other Projects-based app work locally.",
+      verify: "Open the current HubSpot project commands docs and create-app docs before relying on local development behavior.",
+      boundary: "Local development preview is not production validation, Marketplace approval, or proof that all app configuration is uploaded.",
+    },
+    claims: [
+      {
+        claim: "`hs project dev` starts a local development server for project work.",
+        source: officialSources.projectCommands,
+      },
+      {
+        claim: "Supported JSX changes for app cards or settings pages can refresh while the server is running.",
+        source: officialSources.projectCommands,
+      },
+      {
+        claim: "Changes to `.json` configuration files need manual upload with `hs project upload`.",
+        source: officialSources.projectCommands,
+      },
+    ],
+    sections: [
+      {
+        heading: "What hs project dev is for",
+        body: [
+          "`hs project dev` is best understood as a local development loop for supported Projects app work. The project commands docs describe it as starting a local development server, and they call out supported browser refresh behavior for JSX changes when developing app cards or settings pages with UI components.",
+          "That makes it useful for fast iteration on interactive UI surfaces, copy tweaks, component behavior, and developer feedback loops. It is less useful as a final source of truth for account configuration, OAuth readiness, Marketplace listing quality, or build/deploy behavior.",
+          "Before starting local development, install or test the app according to the current create-app flow, confirm the target account, and write down which feature you are testing. A clear test scope keeps local dev from turning into a vague green light.",
+        ],
+      },
+      {
+        heading: "What does not update automatically",
+        body: [
+          "The official project commands docs make a critical distinction: changes to `.json` config files are not included in the local refresh behavior and need to be manually uploaded with `hs project upload`. This affects planning because many important app decisions live in configuration rather than JSX.",
+          "If you change `app-hsmeta.json`, feature schema, auth configuration, scopes, redirect URLs, or other JSON-driven configuration, add a separate upload and verification step. Do not tell a client or product owner that local dev has validated those changes just because a UI surface refreshed in the browser.",
+          "A clean workflow separates local UI confidence from project configuration confidence. Use `hs project dev` for the former, then use upload/build/install checks for the latter.",
+        ],
+      },
+      {
+        heading: "QA workflow for teams",
+        body: [
+          "For team handoff, create a short local-dev note: command used, target account, feature tested, files changed, browser behavior observed, JSON config changed or not changed, and next upload required or not required. That note gives a reviewer enough context to understand what was actually proven.",
+          "If browser permissions, local network settings, or enterprise device policies interfere with the local development server, document the environment rather than turning the issue into a platform claim. Browser behavior changes over time, so the official docs and the local machine state should both be checked.",
+          "For AI-assisted development, paste the local-dev note into the agent prompt and ask for separate next steps for JSX/UI issues, JSON config upload, OAuth install checks, and Marketplace readiness. This mirrors the source boundary and reduces overconfident output.",
+        ],
+      },
+    ],
+    checks: [
+      "Confirm the app is installed or testable in the intended account.",
+      "Run local development from the correct HubSpot project directory.",
+      "Separate JSX/UI changes from `.json` configuration changes.",
+      "Use `hs project upload` for configuration changes that need to reach HubSpot.",
+      "Record browser, account, feature, and files tested in the handoff.",
+      "Do not treat local dev as Marketplace or production approval.",
+    ],
+    faqs: [
+      {
+        question: "What changes refresh in hs project dev?",
+        answer:
+          "HubSpot's project command docs call out supported JSX changes for app cards or settings pages using UI components while the local development server is running.",
+      },
+      {
+        question: "Do JSON config files update automatically in local development?",
+        answer:
+          "No. The project command docs state that `.json` config file changes need to be manually uploaded using `hs project upload`.",
+      },
+      {
+        question: "Is hs project watch still the recommended local loop?",
+        answer:
+          "The archived HubSpot project commands docs mark `hs project watch` as deprecated in favor of `hs project dev`; verify the current docs before using older workflows.",
+      },
+    ],
+    sources: [officialSources.projectCommands, officialSources.createApp],
+    related: ["hubspot-project-upload-checklist", "hubspot-app-hsmeta-json-structure", "hubspot-cli-node-ci-preflight"],
+    cta: "skill",
+  },
+  {
+    slug: "hubspot-oauth-redirect-scopes-install-checklist",
+    title: "HubSpot OAuth Redirect URL and Scopes Checklist",
+    description:
+      "A source-linked checklist for HubSpot Projects app OAuth redirect URLs, scopes, static auth boundaries, install testing, and Marketplace listing readiness.",
+    intent: "Prepare OAuth and install-flow review.",
+    lastChecked,
+    summary:
+      "For multi-account and Marketplace-oriented HubSpot apps, review OAuth redirect URLs, requested scopes, backend credentials, install testing, and shared-data claims before submission or client handoff.",
+    answerSnapshot: {
+      shortAnswer:
+        "For multi-account or Marketplace HubSpot apps, OAuth redirect URLs, scopes, backend credentials, and install testing should be reviewed together before listing or production handoff.",
+      appliesTo: "Developers preparing public, Marketplace, or multi-account HubSpot apps on the Projects developer platform.",
+      verify: "Open the current create-app docs and Marketplace listing requirements before finalizing OAuth configuration or listing copy.",
+      boundary: "This checklist does not guarantee OAuth install success, Marketplace approval, or policy compliance.",
+    },
+    claims: [
+      {
+        claim: "OAuth redirect URLs are configured in `app-hsmeta.json` for OAuth app setup.",
+        source: officialSources.createApp,
+      },
+      {
+        claim: "For static auth in a privately distributed app, HubSpot's create-app docs say to remove the `redirectUrls` sub-property.",
+        source: officialSources.createApp,
+      },
+      {
+        claim: "Marketplace apps must use OAuth and should only request scopes the app needs.",
+        source: officialSources.marketplaceRequirements,
+      },
+    ],
+    sections: [
+      {
+        heading: "OAuth configuration checklist",
+        body: [
+          "Start by deciding whether the app is truly OAuth-based. HubSpot's create-app docs distinguish OAuth from static authentication, and the Marketplace requirements add an important boundary for Marketplace apps: OAuth is required and scopes should be limited to what the app needs.",
+          "For OAuth apps, inspect `app-hsmeta.json` for redirect URLs and auth configuration before upload. Redirect URLs should match the backend OAuth server and the environment being tested. If a URL points to local development, staging, or production, label that clearly so a reviewer does not confuse a test callback with a final callback.",
+          "For privately distributed static-auth apps, do not keep OAuth assumptions in the handoff. The create-app docs state that if static authentication is chosen for a privately distributed app, the `redirectUrls` sub-property should be removed from the `auth` field. That is a concrete source-linked distinction worth exposing in any agent prompt.",
+        ],
+      },
+      {
+        heading: "Scopes and shared data",
+        body: [
+          "Scopes are not just technical fields. They shape install consent, Marketplace review, and user trust. HubSpot's Marketplace requirements say to request only scopes the app needs, and they connect shared-data information to the scopes requested by the app.",
+          "Build a scope table with four columns: requested scope, app feature that uses it, read/write behavior, and where the user-facing listing explains the data flow. If a requested scope has no implemented feature or no listing explanation, either remove it or document why it is conditional or optional according to current requirements.",
+          "Avoid vague phrases such as 'full CRM access' unless the app truly needs and explains that scope pattern. The safer long-tail SEO answer is: make scopes least-privilege, implemented, and reflected in listing/shared-data claims.",
+        ],
+      },
+      {
+        heading: "Install testing before handoff",
+        body: [
+          "After upload, OAuth apps need backend credentials and an install flow that can be tested. The create-app docs describe configuring client ID and client secret in the backend OAuth server after project upload for OAuth apps. If that step is missing, the project can exist in HubSpot while the install flow is still incomplete.",
+          "Test the install in the right account type and record the result. A good install note includes redirect URL used, scopes displayed, account installed into, backend environment, success/failure result, and any error text. That note is valuable for debugging and for Marketplace readiness reviews.",
+          "Keep Marketplace submission separate from install success. A working install flow is necessary work, but Marketplace review also evaluates listing materials, policies, support, shared data, and other requirements. This guide is designed to organize the work, not certify the outcome.",
+        ],
+      },
+    ],
+    checks: [
+      "Classify auth as OAuth or static auth before editing `app-hsmeta.json`.",
+      "For OAuth, verify redirect URLs against the backend environment.",
+      "For static auth private apps, remove OAuth redirect URL assumptions from the handoff.",
+      "Map every requested scope to an implemented feature.",
+      "Check Marketplace shared-data language against requested scopes.",
+      "Configure backend OAuth credentials after upload when applicable.",
+      "Record install test account, redirect URL, scopes, and result.",
+    ],
+    faqs: [
+      {
+        question: "When do I need OAuth instead of static auth?",
+        answer:
+          "Marketplace apps must use OAuth according to HubSpot's Marketplace requirements. Static auth is a separate option for privately distributed app cases and should be checked against the current create-app docs.",
+      },
+      {
+        question: "Where should OAuth redirect URLs be configured?",
+        answer:
+          "HubSpot's create-app docs show redirect URLs inside the `auth` configuration of `app-hsmeta.json` for OAuth app setup.",
+      },
+      {
+        question: "Should scopes match listing and shared-data claims?",
+        answer:
+          "Yes. Marketplace requirements connect requested scopes with shared-data accuracy, so requested scopes should match implemented behavior and user-facing data-flow claims.",
+      },
+    ],
+    sources: [officialSources.createApp, officialSources.marketplaceRequirements, officialSources.marketplace],
+    related: ["hubspot-app-hsmeta-json-structure", "hubspot-marketplace-listing-checklist-2026", "hubspot-project-upload-checklist"],
+    cta: "bundle",
+  },
+  {
     slug: "hubspot-projects-cli-faq",
     title: "HubSpot Projects CLI FAQ",
     description:
